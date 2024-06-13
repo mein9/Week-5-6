@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- hiding this table to make the output look better -->
+    <!-- <table>
+      <tr>
+        <th>name</th>
+        <th>height</th>
+        <th>place</th>
+      </tr>
+      <tr>
+        <th>Kilimanjaro</th>
+        <th>5895</th>
+        <th>Tanzania</th>
+      </tr>
+    </table> -->
+    <h1>Mountains</h1>
+    <script>
+      let MOUNTAINS = [
+        { name: "Mt. Rainer", height: 14417, Place: "Washington State" },
+        { name: "Mt. Adams", height: 12281, Place: "Washington State" },
+        { name: "Mt. Baker", height: 10786, Place: "Washington State" },
+      ];
+      function buildTable(data) {
+        let table = document.createElement("table");
+
+        let fields = Object.keys(data[0]);
+        let headRow = document.createElement("tr");
+        fields.forEach(function (field) {
+          let headCell = document.createElement("th");
+          headCell.appendChild(document.createTextNode(field));
+          headRow.appendChild(headCell);
+        });
+        table.appendChild(headRow);
+
+        data.forEach(function (object) {
+          let row = document.createElement("tr");
+          fields.forEach(function (field) {
+            let cell = document.createElement("td");
+            cell.appendChild(document.createTextNode(object[field]));
+            if (typeof object[field] == "number") {
+              cell.style.textAlign = "right";
+            }
+            row.appendChild(cell);
+          });
+          table.appendChild(row);
+        });
+        return table;
+      }
+      // invoke the buildTable function:
+      document.body.appendChild(buildTable(MOUNTAINS));
+    </script>
+  </body>
+</html>
